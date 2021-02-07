@@ -1,0 +1,88 @@
+<html>
+<head>
+	 <link rel="stylesheet" href="asset/icon.css"></head>
+	 <link rel="stylesheet" href="asset/style.css"></head>
+</head>
+
+<body>
+	<main class="main">	
+
+<section class="SectionIntro" id="intro">
+<div class="info">
+
+	<div>
+		<h1>Memory Game</h1>
+	</div>	
+		
+	<div>
+		<h4 onclick="jugar();">Click para Jugar</h4>
+	</div>	
+</div>
+</section>
+
+<section class="SectionGame" id="game">
+
+	<div class="Estados">
+		<div class="containnerScore" > 		
+			<span class="Score-label">Score<span id="Score"></span></span> 		
+		</div>
+		
+		<div class="containnerIntentos" > 		
+			<span class="Score-label">Intentos<span id="Intentos"></span></span> 		
+		</div>
+	</div>
+		
+<!-- The Modal -->
+	<div id="myModal" class="modal">
+	<!-- Modal content -->
+	  <div class="modal-content" id="ranking">
+			<!-- <span class="close">&times;</span> -->
+			<h2 class="podio" style="text-align:center; color:black font-size:46px; font-weight:bold">Ranking</h2>
+			<br>
+			<p style="text-align:center; color:rgb(204, 204, 0); font-size:30px; font-weight:bold" class="podio">Oro <span id="oro">0</span></p>
+			<p style="text-align:center; color:rgb(166, 166, 166); font-size:30px; font-weight:bold" class="podio">Plata<span id="plata">0</span></p>
+			<p style="text-align:center; color:rgb(179, 134, 0); font-size:30px; font-weight:bold" class="podio">Bronce<span id="bronce">0</span></p>
+			
+			<center><button class="close">Volver a Jugar</button></center>
+	  </div>
+		  
+		<div class="modal-content" id="felizidades">
+			<h1>Felizidades</h1>
+
+		</div>	
+		
+		<div class="modal-content" id="Perdiste">
+			<h1>Perdiste</h1>
+		</div>
+	</div>
+		
+		
+		
+
+		<div class="containner">
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+			<div class="ficha"><label></label></div>
+		</div>
+		
+		</section>	
+	</main>
+</body>	
+
+<script src="game.js"> </script>
+
+
+</html>

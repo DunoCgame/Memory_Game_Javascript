@@ -1,0 +1,145 @@
+<html>
+<head>
+</head>
+<body></body>	
+<script src="HorizonFrontierJs.js"></script>
+		<script>
+Screen.Init();
+				
+let Fondo = new Square(0,0,Screen.W,Screen.H,0,"Upper-Left","#0066ff");
+let SeccionCuadricula = new Square();
+
+var Objs ={Draw:false, url:"",  X:0, Y:0, W:100, H:100}
+
+
+<!-- let LimitCol=4; -->
+<!-- let LimitRow=5; -->
+
+let LimitCol=4;
+let LimitRow=4;
+
+var row = [];
+var col = [];
+var pos=[];
+
+var IMG=[];
+		IMG[0]="a";
+		IMG[1]="b";
+		IMG[2]="c";
+		IMG[3]="d";
+		IMG[4]="e";
+		IMG[5]="f";
+		IMG[6]="g";
+		IMG[7]="h";
+		IMG[8]="i";
+
+let counter = 0;
+let NumeroRepetidas = 2;
+
+
+function Numero_Aleatorio(max,min){ 
+
+	var Num = Math.floor(Math.random() * (max - min + 1) - min);
+
+	return Num;
+
+}
+
+var numA;
+
+function Cuadricula(){
+
+	<!-- for(var H=0; H<((LimitCol*LimitRow)/2); H++){				 -->
+						<!-- IMG[H]=H; -->
+					<!-- <!-- console.log("IMG "+H+" : "+IMG[H]); --> -->
+				<!-- }	 -->
+				
+	//Agrega valores limpios al arreglo
+	for(var t=0; t<(((LimitCol*LimitRow))); t++){				
+						pos[t]="";
+						<!-- console.log(t+":"+pos[t]); -->
+				}
+	//amacena la posiciones del array
+	for(let i=0; i<LimitCol; i++){
+		for(let a=0; a<LimitRow; a++){
+				
+				SeccionCuadricula.X=102*i+10;
+				SeccionCuadricula.Y=102*a+10;
+				SeccionCuadricula.W=100;
+				SeccionCuadricula.H=100;
+				SeccionCuadricula.Rotate=0;
+				SeccionCuadricula.Colour="grey";
+				SeccionCuadricula.Draw();
+							
+   let Texto_Screen = new Text(i+"."+a , '20px', 'Calibri', 'white', 102*i+20, 102*a+40);
+	   Texto_Screen.Draw();
+
+			col[a]= SeccionCuadricula.Y = 102*a+10;
+				}
+			row[i]= SeccionCuadricula.X = 102*i+10;
+			}
+		
+		
+		for(var t=0; t<pos.length; t++){
+			<!-- for(var x=0; x<NumeroRepetidas; x++){ -->
+			
+					numA = Numero_Aleatorio(8,0);
+				
+					<!-- while(pos[numA]==""){ -->
+						<!-- numA = Numero_Aleatorio(8,0);				 -->
+					<!-- } -->
+				//
+				pos[numA] = IMG[t];
+				//
+			<!-- } -->
+		}
+
+	
+		//ver datos
+		for(var l=0; l<pos.length; l++){
+			console.log(l+":"+pos[l]);
+			}	
+
+
+
+
+}
+
+
+
+
+
+
+	
+var ArrayFinal = [];
+let Y=0;
+
+function add_obj(){
+	
+	for(Y=0; Y<((LimitCol*LimitRow)/2); Y++){	
+		
+		ArrayFinal[Y]=pos[Y];
+		
+		console.log(ArrayFinal[Y]);
+	}		
+		
+}	
+
+
+
+
+
+
+
+
+(function LoopGame(){
+	Screen.Clear();//clear screen
+	Screen.MouseShow(true);
+	Fondo.Draw();
+
+	Cuadricula();
+	<!-- add_obj(); -->
+	<!-- Game_loop.Start(LoopGame); -->
+})();
+	</script>
+</html>

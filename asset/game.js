@@ -1,5 +1,7 @@
 let Fichas = document.getElementsByClassName("ficha");
-let label = document.getElementsByTagName("label");
+let Fronts = document.getElementsByClassName("Front");
+let Backs = document.getElementsByClassName("Back");
+
 let Score = document.getElementById("Score");
 let Intentos = document.getElementById("Intentos");
 
@@ -22,10 +24,7 @@ let Intentos_data=10;
 Score.innerHTML=data_Score;
 Intentos.innerHTML=Intentos_data;
 
-
-
 /********Nodal***********/
-
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 var Close = document.getElementsByClassName("close")[0];
@@ -33,9 +32,6 @@ var Close = document.getElementsByClassName("close")[0];
 felizidades_Ventana.style.display = "none";
 ranking_Ventana.style.display = "none";
 Perdiste_Ventana.style.display = "none";
-
-
-
 
 /***Ranking*****/
 var oro = document.getElementById("oro");
@@ -54,50 +50,64 @@ var Felisitaciones_Estado=false;
 var Perdiste_Estado=false;
 var Ranking_Estado=false;
 
-
-
 let Ficha1="";
 let Ficha2="";
 let pos1;
 let pos2;
 
 
+var MezclarLetras;
+	
 
 var Letras = [];
-	Letras[0]="icon-unrealengine";
-	Letras[1]="icon-unity";
-	Letras[2]="icon-playstation";
-	Letras[3]="icon-xbox";
-	Letras[4]="icon-blender";
-	Letras[5]="icon-cplusplus";
-	Letras[6]="icon-python";
-	Letras[7]="icon-javascript";		
-	
-	Letras[8]="icon-unrealengine";
-	Letras[9]="icon-unity";
-	Letras[10]="icon-playstation";
-	Letras[11]="icon-xbox";
-	Letras[12]="icon-blender";
-	Letras[13]="icon-cplusplus";
-	Letras[14]="icon-python";
-	Letras[15]="icon-javascript";
+		Letras[0]="icon-unrealengine";
+		Letras[1]="icon-unity";
+		Letras[2]="icon-playstation";
+		Letras[3]="icon-xbox";
+		Letras[4]="icon-blender";
+		Letras[5]="icon-cplusplus";
+		Letras[6]="icon-python";
+		Letras[7]="icon-javascript";		
+		Letras[8]="icon-unrealengine";
+		Letras[9]="icon-unity";
+		Letras[10]="icon-playstation";
+		Letras[11]="icon-xbox";
+		Letras[12]="icon-blender";
+		Letras[13]="icon-cplusplus";
+		Letras[14]="icon-python";
+		Letras[15]="icon-javascript";
 
 
 Close.onclick = function() {
 	  modal.style.display = "none";
-	  // window.location.reload(); 
 Reinicio();
 }
-	
-	
+
+
 document.querySelectorAll(".ficha").forEach((element, index) => {
 	element.onclick = function(){
 		
-						SelectFicha(index,label[index].className);			
+						SelectFicha(index,Backs[index].className);			
 						
 						}	
 });	
 	
+
+document.querySelectorAll(".Front").forEach((element, index) => {
+	 element.onclick = function(){					
+				Fichas[index].style.transform="rotateY(180deg)";
+				}	
+
+			});	
+
+
+document.querySelectorAll(".Back").forEach((element, index) => {
+	element.onclick = function(){						
+				Fichas[index].style.transform="rotateY(0deg)";					
+				}	
+			});	
+
+
 
 function jugar(){
 
@@ -108,14 +118,13 @@ function jugar(){
 	
 }
 
-// reset function
 
 function Reinicio(){
 	
 	SectionIntro.style.display="block";
 	SectionGame.style.display="none";
 	MezclarPosLetras();
-	// OcultarFichas();
+	//OcultarFichas();
 	
 	Aciertos=0;
 	data_Score=0;
@@ -130,29 +139,22 @@ function Reinicio(){
 	Ficha1="";
 	Ficha2="";
 	pos1;
-	pos2;
-	
+	pos2;	
 	
 	felizidades_Ventana.style.display = "none";
 	ranking_Ventana.style.display = "none";
 	Perdiste_Ventana.style.display = "none";
 
-
-	
-	
 }
 
-	
-var MezclarLetras;
-	
+
 function MezclarPosLetras(){
 		MezclarLetras = Letras.sort(function(){  return Math.random()-0.5 });
 
 			for(let i=0; i<Fichas.length; i++){
 			
-				label[i].className = MezclarLetras[i];
-				Fichas[i].style.background="white";
-				Fichas[i].style.border="2px solid #cccc00";
+				Backs[i].className += " "+MezclarLetras[i];			
+				
 
 			}
 		
@@ -162,75 +164,46 @@ function OcultarFichas(){
 	
 		for(let o=0; o<Fichas.length; o++ ){
 			
-			label[o].style.display="block";					
+			Fichas[o].style.transform="rotateY(180deg)";				
 		}
 		
 	let time;	
 	
-	// clearTimeout(time);
 	
 	time = setTimeout(function(){  
 	
 		for(let o=0; o<Fichas.length; o++ ){
 			
-			label[o].style.display="none";
-			Fichas[o].style.background="rgb(41, 82, 163)";
-			Fichas[o].style.border="2px solid white";
-						
+		Fichas[o].style.transform="rotateY(0deg)";
+							
 		}
 
 	},5000);
 	
-	// clearTimeout(time);
+
 }
 
 
 function SelectFicha(a,text){
-	
-if(label[a].style.display!="block"){
-	
-		
-			// alert("ficha" +a+" select no es block");
-			
-
-			
+	if(Fichas[a].style.transform=="rotateY(180deg)"){
 			if(Ficha1=="" ){
 				Ficha1=text;
 				pos1=a;
-				
-				Fichas[a].style.background="white";
-				Fichas[a].style.border="2.3px solid #cccc00";						
-				label[a].style.display="block";
-				
-					
+	
 			}
 			else
 				if(Ficha1!="" && Ficha2==""){
 					Ficha2=text;
 					pos2=a;
-					
-					Fichas[a].style.background="white";
-					Fichas[a].style.border="2.3px solid #cccc00";
-								
-					label[a].style.display="block";
-					
-						
-				}
-			
-
-			Verificar();
-			
-
-		}else{
-			
-			// alert("ficha " +a+"select es block");
+				}			
+		}else{			
+			console.log("no rotada");
 		}
-	
-	
+			Verificar();
+}
 
-	}
-	
-	
+
+
 function Verificar(){
 
 	setTimeout(	
@@ -240,11 +213,9 @@ function Verificar(){
 					if(Ficha1==Ficha2){
 		
 						Score.innerHTML=data_Score+=1;
-											
-						
-						Aciertos+=1;
-
 					
+						Aciertos+=1;
+	
 						Ficha1="";
 						Ficha2="";
 						
@@ -252,29 +223,24 @@ function Verificar(){
 						
 					}
 					
-					if(Ficha1!=Ficha2){
-					
-						
+					if(Ficha1!=Ficha2){						
 						Intentos.innerHTML=Intentos_data-=1;
 									
 						Ficha1="";
 						Ficha2="";
-						
-						Fichas[pos1].style.background="rgb(41, 82, 163)";
-						Fichas[pos2].style.background="rgb(41, 82, 163)";
-						Fichas[pos1].style.border="2px solid white";
-						Fichas[pos2].style.border="2px solid white";
-						
-						label[pos1].style.display="none";
-						label[pos2].style.display="none";
+
+						Fichas[pos1].style.transform="rotateY(0deg)";
+						Fichas[pos2].style.transform="rotateY(0deg)";
 						
 						Estado_fichas();
 					}
 				}
 
 
-			},1000);
+			},2000);
 }
+
+
 
 function Estado_fichas(){
 
@@ -294,8 +260,6 @@ function Estado_fichas(){
 
 function LLamada_Ventana_Nodal(){
 		
-	
-	
 	OrdenarRanking = Ranking.sort((a,b)=>b-a);
 	
 	oro.innerText = Ranking[0];
@@ -334,8 +298,7 @@ function LLamada_Ventana_Nodal(){
 
 
 function add_datos_ranking(val){
-	
-	// Ranking[0]=data_Score;
+
 	if(val>Ranking[0] &&  val>Ranking[1] && val>Ranking[2]){
 		Ranking[0]=val;	
 		Ranking[1]=Ranking[1];	
@@ -356,6 +319,10 @@ function add_datos_ranking(val){
 	
 	
 }
+
+
+
+
 
 
 
